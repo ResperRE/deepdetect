@@ -78,6 +78,7 @@ namespace dd
     bool _masked_lm = false;
     bool _seq_training = false;
     bool _classification = false;
+    bool _regression = false;
     bool _timeserie = false;
     std::string _loss = "";
 

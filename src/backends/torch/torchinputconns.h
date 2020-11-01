@@ -291,13 +291,26 @@ namespace dd
                            std::unordered_map<std::string, int> &hcorresp_r,
                            const std::string &folderPath);
 
+    void read_image_list(
+        std::vector<std::pair<std::string, std::vector<double>>> &lfiles,
+        const std::string &listfilePath);
+
+    template <typename T>
+    void split_dataset(std::vector<std::pair<std::string, T>> &lfiles,
+                       std::vector<std::pair<std::string, T>> &test_lfiles);
+
     void transform(const APIData &ad);
 
   private:
+    template <typename T>
     int add_image_file(TorchDataset &dataset, const std::string &fname,
-                       int target);
+                       T target);
 
     at::Tensor image_to_tensor(const cv::Mat &bgr);
+
+    at::Tensor target_to_tensor(const int &target);
+
+    at::Tensor target_to_tensor(const std::vector<double> &target);
   };
 
   class TxtTorchInputFileConn : public TxtInputFileConn,
